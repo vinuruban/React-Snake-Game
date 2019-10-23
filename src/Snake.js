@@ -4,7 +4,7 @@ import './App.css';
 function Snake(props) {
     return (
         <div>
-            {props.snakeDots.map((dot, i) => {
+            {props.blackSnakeDots.map((dot, i) => {
 
                 const getStyle={
                     left: `${dot[0]}%`,
