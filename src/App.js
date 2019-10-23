@@ -1,24 +1,38 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './App.css';
+import Snake from './Snake'
+import Food from './Food'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const getRandomCoordinates = () => {
+  let min = 1;
+  let max = 97;
+  let x = Math.floor((Math.random()*(max-min+1)+min)/2)*2;
+  let y =  Math.floor((Math.random()*(max-min+1)+min)/2)*2;
+  return [x,y]
 }
 
-export default App;
+class App extends Component {
+
+  state = {
+    //objects of objects
+    food: getRandomCoordinates(),
+    snakeDots: [ 
+      [0,0],
+      [2,0],
+      [4,0]
+    ]
+  }
+  render() {
+    return (
+        <div className='game-area'>
+          <Snake snakeDots={this.state.snakeDots} />
+          {/* <div className='snake-dot' style={{top:0, left:0}}></div>
+          <div className='snake-dot' style={{top:0, left:'2%'}}></div>
+          <div className='snake-dot' style={{top:0, left:'4%'}}></div> */}
+          <Food dotty={this.state.food} />
+        </div>
+    )
+  }
+}
+
+export default App
