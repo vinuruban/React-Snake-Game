@@ -117,11 +117,13 @@ class App extends Component {
   gameOver() {
     alert("Game Over. Points: " + (this.state.snakeDots.length - 3));
     if (this.state.highScore < this.state.snakeDots.length - 3) {
+      //if the score is bigger than the highScore in the state, highScore will be updated
       this.setState({
         highScore: this.state.snakeDots.length - 3
       });
     }
     this.setState({
+      //this resets the state (to what was initially there), but highScore isnt reset!
       food: getRandomCoordinates(),
       snakeDots: [[0, 0], [2, 0], [4, 0]],
       direction: "RIGHT",
